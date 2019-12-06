@@ -9,7 +9,13 @@ import {withPosts} from '../providers/PostDataProvider'
 const FormWrapper = styled.form`
     margin-top: 10px;
     text-align: center;
-`
+    display: flex;
+    align-items: center;
+    > :nth-child(1n) {
+      height: 55px;
+      margin: 0 10px 15px 0;
+    };
+`;
 
 class NewTopic extends Component {
     constructor(){
@@ -21,7 +27,7 @@ class NewTopic extends Component {
         }
     }
 
-    
+
     render() {
 
         const handleChange = e => {
@@ -34,14 +40,14 @@ class NewTopic extends Component {
                 name: this.state.name
             }
 
-            axios.post('http://192.168.1.37:8080/Topics', post).then(() => {
+            axios.post('/Topics', post).then(() => {
                 this.setState({redirect: true})
                 this.props.getTopics();
             })
         }
 
         if(this.state.redirect){
-            return <Redirect to='/Topics' />
+            return <Redirect to='/TopicsPage' />
         }
 
         return (
